@@ -9,4 +9,5 @@ Sphinx==1.4.8
 cryptography==1.7
 PyYAML==3.11
 tornado==4.5.1
+virtualenv==15.1.0
 
