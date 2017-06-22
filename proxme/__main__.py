@@ -23,6 +23,7 @@ class Handler(tornado.web.RequestHandler):
             self.write(fh.read())
 
 if __name__ == "__main__":
+    tornado.options.parse_command_line()
     app = tornado.web.Application([
         (r"/(.*)", Handler),
     ], autoreload=True)
