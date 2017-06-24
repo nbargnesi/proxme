@@ -4,6 +4,7 @@ import os
 import sys
 import proxme
 import proxme.lib
+import signal
 import tornado
 import tornado.options
 import tornado.web
@@ -49,6 +50,12 @@ def main():
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(port, address=address)
     print('Listening on %s:%d; ready for requests.' % (address, port))
+
+    def _int_handler(signal, frame):
+        print('Got SIGINT, shutting down.')
+        tornado.ioloop.IOLoop.current().stop()
+
+    signal.signal(signal.SIGINT, _int_handler)
 
     tornado.ioloop.IOLoop.current().start()
 
